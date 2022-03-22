@@ -14,7 +14,7 @@ public class LinkedListDeque <T> {
     }
 
     private Node head;
-    private Node tail;
+    // private Node tail;
     private int size;
 
     public LinkedListDeque() {
@@ -22,7 +22,7 @@ public class LinkedListDeque <T> {
         head.data = null;
         head.next = head;
         head.prev = head;
-        tail = head;
+        // tail = head;
         size = 0;
     }
 
@@ -36,9 +36,7 @@ public class LinkedListDeque <T> {
 
     public void addFirst(T data) {
         add(data, head);
-        while (tail.next != head) {
-            tail = tail.next;
-        }
+        
     }
 
     public T removeFirst() {
@@ -52,8 +50,8 @@ public class LinkedListDeque <T> {
         if (head.next == head) {
             return null;
         }
-        tail = tail.prev;
-        return remove(tail);
+        // tail = tail.prev;
+        return remove(head.prev.prev);
     }
 
     private T remove(Node before) {
@@ -68,8 +66,8 @@ public class LinkedListDeque <T> {
     }
 
     public void addLast(T data) {
-        add(data, tail);
-        tail = tail.next;
+        add(data, head.prev);
+        // tail = tail.next;
     }
 
     public boolean isEmpty() {
