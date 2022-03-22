@@ -43,14 +43,14 @@ public class LinkedListDeque <T> {
 
     public T removeFirst() {
         if (head.next == head) {
-            throw new RuntimeException("The list has no member");
+            return null;
         }
         return remove(head);
     }
 
     public T removeLast() {
         if (head.next == head) {
-            throw new RuntimeException("The list has no member");
+            return null;
         }
         tail = tail.prev;
         return remove(tail);
@@ -90,7 +90,7 @@ public class LinkedListDeque <T> {
 
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            return null;
         }
         
         Node t = head.next;
@@ -99,5 +99,19 @@ public class LinkedListDeque <T> {
             t = t.next;
         }
         return t.data;
+    }
+
+    private T getRecursive(Node node, int index) {
+        if (index == 0) {
+            return node.data;
+        }
+        return getRecursive(node.next, index - 1);
+    }
+
+    public T getRecursive(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        return getRecursive(head.next, index);
     }
 }
