@@ -45,6 +45,8 @@ public class Palindrome {
 
         Deque<Character> deque = wordToDeque(str);
         for (int i = 0; i < str.length(); i++) {
+            if (str.length() % 2 == 1 && i == str.length() / 2)
+                break;
             if (!cc.equalChars(deque.removeLast(), str.charAt(i))) {
                 return false;
             }

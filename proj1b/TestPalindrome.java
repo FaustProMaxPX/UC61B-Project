@@ -30,6 +30,8 @@ public class TestPalindrome {
     public void testIsPalindromeCompare() {
 
         CharacterComparator cc = new OffByOne();
-        assertTrue(palindrome.isPalindrome("fl", cc));
+        assertFalse(palindrome.isPalindrome("fl", cc));
+
+        assertTrue(palindrome.isPalindrome("detrude", cc));
     }
 }
