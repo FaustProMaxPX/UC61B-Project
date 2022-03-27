@@ -17,12 +17,14 @@ public class TestArrayDequeGold {
         StudentArrayDeque<Integer> deque = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> answer = new ArrayDequeSolution<>();
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             int bo = 0;
             if (deque.size() == 0) {
                 bo = StdRandom.uniform(2);
             }
-            bo = StdRandom.uniform(7);
+            else {
+                bo = StdRandom.uniform(7);
+            }
             Integer n = StdRandom.uniform(100);
             Integer d,a;
             switch (bo) {
@@ -61,6 +63,9 @@ public class TestArrayDequeGold {
                     // if (deque.size() < 0) {
                     //     assertTrue(builder.toString() + "deque size" ,false);
                     // }
+                    // builder.append("deque.size()\n");
+                    // System.out.println(deque.size() + " " + answer.size());
+                    // assertEquals(builder.toString(), answer.size(), deque.size());
                     int index = StdRandom.uniform(deque.size());
                     builder.append("deque.get(" + index + ")\n");
                     assertEquals(builder.toString(), answer.get(index), deque.get(index));
