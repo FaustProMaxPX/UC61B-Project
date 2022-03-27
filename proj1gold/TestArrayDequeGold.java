@@ -40,24 +40,22 @@ public class TestArrayDequeGold {
                     d = deque.removeLast();
                     a = answer.removeLast();
                     builder.append("deque.removeLast()\n" );
-                    assertEquals(builder.toString() + "expecte " + a + " but got " + 
-                        d + "\n" , a, d);
+                    assertEquals(builder.toString(), a, d);
                     break;
                 case 3:
                     d = deque.removeFirst();
                     a = answer.removeFirst();
                     builder.append("deque.removeFirst()\n");
-                    assertEquals(builder.toString() + "expecte " + a + " but got " + 
-                        d + "\n" , a, d);
+                    assertEquals(builder.toString(), a, d);
                     break; 
                 case 4:
                     builder.append("deque.size()\n");
-                    assertEquals(builder.toString() + "expect " + answer.size() + " but got " + deque.size(), answer.size(), deque.size());
+                    assertEquals(builder.toString(), answer.size(), deque.size());
                     break;
                 case 5:
                     builder.append("deque.isEmpty()\n");
                     boolean t = deque.isEmpty() ^ answer.isEmpty();
-                    assertFalse(builder.toString() + "expect " + answer.isEmpty() + " but got " + deque.isEmpty(), t);
+                    assertFalse(builder.toString(), t);
                     break;
                 case 6:
                     // if (deque.size() < 0) {
@@ -65,7 +63,7 @@ public class TestArrayDequeGold {
                     // }
                     int index = StdRandom.uniform(deque.size());
                     builder.append("deque.get(" + index + ")\n");
-                    assertEquals(builder.toString() + "expect "+ answer.get(index) + " but got " + deque.get(index), answer.get(index), deque.get(index));
+                    assertEquals(builder.toString(), answer.get(index), deque.get(index));
                  default:
                      break;
              }
