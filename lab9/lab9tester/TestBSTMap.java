@@ -75,6 +75,8 @@ public class TestBSTMap {
             b.put("hi" + i, 1);
         }
         assertEquals(456, b.size());
+        b.remove("hi" + 0);
+        assertEquals(455, b.size());
     }
 
     //assumes get/containskey work
