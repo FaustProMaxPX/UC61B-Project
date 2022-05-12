@@ -100,7 +100,7 @@ public class MergeSort {
             q.enqueue(sq);
         }
         if (q.isEmpty())
-            return null;
+            return items;
         return q.dequeue();
     }
 
