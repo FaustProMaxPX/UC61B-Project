@@ -48,12 +48,57 @@ public class QuickSort {
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
+        for (Item item : unsorted) {
+            if (item.compareTo(pivot) > 0) {
+                greater.enqueue(item);
+            } else if (item.compareTo(pivot) == 0) {
+                equal.enqueue(item);
+            } else {
+                less.enqueue(item);
+            }
+        }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
+        if (items.size() <= 1) {
+            return items;
+        }
         // Your code here!
-        return items;
+        Item pivot = getRandomItem(items);
+        Queue<Item> less = new Queue<>();
+        Queue<Item> equal = new Queue<>();
+        Queue<Item> greater = new Queue<>();
+        partition(items, pivot, less, equal, greater);
+        Queue<Item> sleft = quickSort(less);
+        Queue<Item> sright = quickSort(greater);
+        Queue<Item> ret = catenate(sleft, equal);
+        ret = catenate(ret, sright);
+        return ret;
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new Queue<>();
+        // Long startTime = System.currentTimeMillis();
+        q.enqueue(100);
+        q.enqueue(10);
+        q.enqueue(99);
+        q.enqueue(88);
+        q.enqueue(123);
+        for (Integer num : q) {
+            System.out.printf("%d ", num);
+        }
+        System.out.println();
+        q = quickSort(q);
+        for (Integer num : q) {
+            System.out.printf("%d ", num);
+        }
+        // for (int i = 0; i < 10000; i++) {
+        //     q.enqueue(1);
+        // }
+        // quickSort(q);
+        // Long end = System.currentTimeMillis();
+        // System.out.println(end - startTime);
     }
 }

@@ -1,6 +1,25 @@
 import edu.princeton.cs.algs4.Queue;
 
 public class MergeSort {
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new Queue<>();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(5);
+        q.enqueue(4);
+        q.enqueue(100);
+        for (Integer num : q) {
+            System.out.printf("%d ", num);
+        }
+        System.out.println();
+        Queue<Integer> sq = mergeSort(q);
+        for (Integer num : sq) {
+            System.out.printf("%d ", num);
+        }
+    }
+
+
     /**
      * Removes and returns the smallest item that is in q1 or q2.
      *
@@ -35,7 +54,13 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
         // Your code here!
-        return null;
+        Queue<Queue<Item>> ret = new Queue<>();
+        items.forEach((Item i) -> {
+            Queue<Item> q = new Queue<>();
+            q.enqueue(i);
+            ret.enqueue(q);
+        });
+        return ret;
     }
 
     /**
@@ -54,13 +79,28 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
         // Your code here!
-        return null;
+        int size = q1.size() + q2.size();
+        Queue<Item> q = new Queue<>();
+        for (int i = 0; i < size; i++) {
+            Item it = getMin(q1, q2);
+            q.enqueue(it);
+        }
+        return q;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        Queue<Queue<Item>> q = makeSingleItemQueues(items);
+        while (q.size() > 1) {
+            Queue<Item> q1 = q.dequeue();
+            Queue<Item> q2 = q.dequeue();
+            Queue<Item> sq = mergeSortedQueues(q1, q2);
+            q.enqueue(sq);
+        }
+        return q.dequeue();
     }
+
+    
 }
