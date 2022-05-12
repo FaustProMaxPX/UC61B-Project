@@ -99,6 +99,8 @@ public class MergeSort {
             Queue<Item> sq = mergeSortedQueues(q1, q2);
             q.enqueue(sq);
         }
+        if (q.isEmpty())
+            return null;
         return q.dequeue();
     }
 
